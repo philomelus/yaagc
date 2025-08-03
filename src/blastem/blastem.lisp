@@ -1,4 +1,4 @@
-(in-package :clg-blastem)
+(in-package :yaagc-blastem)
 
 (defconstant +SHIP-W+ 12 "Width of ship bitmap in pixels.")
 (defconstant +SHIP-H+ 13 "Height of ship bitmap in pixels.")
@@ -87,11 +87,6 @@
    ))
 
 (defvar *DATA* :type "data")
-
-;;;; Common -------------------------------------------------------------------
-
-(defun asset (path)
-  (namestring (asdf:system-relative-pathname "blastok" (concatenate 'string "assets/blastem/" path))))
 
 ;;;; Display ------------------------------------------------------------------
 
@@ -225,7 +220,7 @@
 
 (defun sprites-init ()
   ;; Load image with sprites
-  (setf (sprites-sheet (data-sprites *DATA*)) (al:load-bitmap (asset "spritesheet.png")))
+  (setf (sprites-sheet (data-sprites *DATA*)) (al:load-bitmap (asset "spritesheet.png" "blastem")))
   (must-init (sprites-sheet (data-sprites *DATA*)) "spritesheet")
 
   ;; Grab all the sprites
@@ -287,13 +282,13 @@
   (al:reserve-samples 128)
 
   ;; Load ship and alien shooting sound
-  (setf (data-sample-shot *DATA*) (al:load-sample (asset "shot.flac")))
+  (setf (data-sample-shot *DATA*) (al:load-sample (asset "shot.flac" "blastem")))
   (must-init (data-sample-shot *DATA*) "shot sample")
 
   ;; Load explosion sounds
-  (setf (aref (data-sample-explode *DATA*) 0) (al:load-sample (asset "explode1.flac")))
+  (setf (aref (data-sample-explode *DATA*) 0) (al:load-sample (asset "explode1.flac" "blastem")))
   (must-init (aref (data-sample-explode *DATA*) 0) "explode[0] sample")
-  (setf (aref (data-sample-explode *DATA*) 1) (al:load-sample (asset "explode2.flac")))
+  (setf (aref (data-sample-explode *DATA*) 1) (al:load-sample (asset "explode2.flac" "blastem")))
   (must-init (aref (data-sample-explode *DATA*) 1) "explode[1] sample"))
 
 (defun audio-deinit ()
@@ -767,7 +762,7 @@
 
 ;;;; Main ---------------------------------------------------------------------
 
-(defun main ()
+(defun blastem-main ()
   (game-init)
   (must-init (al:init) "allegro")
   (must-init (al:install-keyboard) "keyboard")

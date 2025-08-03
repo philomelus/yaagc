@@ -1,7 +1,4 @@
-(in-package :clg-asteroids)
-
-(defun asset (path)
-  (namestring (asdf:system-relative-pathname "clg" (concatenate 'string "assets/" "asteroids/" path))))
+(in-package :yaagc-asteroids)
 
 (deftype display-size () '(integer 0 4000))
 (deftype display-float () '(double-float -4000d0 4000d0))
@@ -121,11 +118,11 @@
 
 ;;; ASSETS
 
-(defvar *font-asset* (asset "fonts/simplicity.ttf"))
-(defvar *background-bitmap-asset* (asset "images/background.png"))
-(defvar *sheet-bitmap-asset* (asset "images/sheet.png"))
-(defvar *explosion-1-audio-asset* (asset "audio/explosion1.flac"))
-(defvar *explosion-2-audio-asset* (asset "audio/explosion2.flac"))
+(defvar *font-asset* (asset "fonts/simplicity.ttf" "asteroids"))
+(defvar *background-bitmap-asset* (asset "images/background.png" "asteroids"))
+(defvar *sheet-bitmap-asset* (asset "images/sheet.png" "asteroids"))
+(defvar *explosion-1-audio-asset* (asset "audio/explosion1.flac" "asteroids"))
+(defvar *explosion-2-audio-asset* (asset "audio/explosion2.flac" "asteroids"))
 
 ;;; BITMAPS
 
@@ -786,7 +783,7 @@
     ((:start :end)))
   (al:flip-display))
 
-(defun main ()
+(defun asteroids-main ()
   (al:run-system (make-instance 'system))
   nil)
 

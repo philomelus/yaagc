@@ -17,18 +17,16 @@
   :components ((:module "src"
                 :serial t
                 :components ((:file "packages")
+                             (:file "assets")
+                             (:file "assets-docs")
+                             (:file "utils")
+                             (:file "utils-docs")
                              (:file "yaagc")
                              (:file "yaagc-docs")
-
-                             (:module "assets"
-                              :components
-                              ((:file "assets")))
-                             
                              (:module "asteroids"
                               :components
                               ((:file "asteroids")
                                (:file "asteroids-docs")))
-                             
                              (:module "blastem"
                               :components
                               ((:file "blastem")
